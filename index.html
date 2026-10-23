@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Doofenshmirtz's Instant Password Generator." />
+  <title>Doofenshmirtz's Instant Password Generator</title>
+
+  <!-- Cartoon-inspired fonts. The page still works if Google Fonts is unavailable. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- The supplied illustration is the stage background. -->
+  <main class="lab-stage" aria-label="Doofenshmirtz's password generator laboratory">
+    <header class="sr-only">
+      <h1>Doofenshmirtz's Instant Password Generator</h1>
+      <p>Because evil plans need strong passwords!</p>
+    </header>
+
+    <!-- Visible title on phones, where the illustrated sign may be cropped. -->
+    <div class="mobile-lab-heading" aria-hidden="true">
+      <p class="mobile-lab-heading__brand">DOOFENSHMIRTZ'S EVIL INC.</p>
+      <h2>INSTANT PASSWORD GENERATOR</h2>
+      <p class="mobile-lab-heading__tagline">Because evil plans need strong passwords!</p>
+    </div>
+
+    <!-- Real HTML controls sit over the illustrated console. -->
+    <section class="console-interior" aria-label="Password controls">
+      <!-- Password output and Copy button -->
+      <div class="password-display-row">
+        <div class="password-input-wrapper">
+          <label for="passwordOutput" class="sr-only">Generated password</label>
+          <input
+            id="passwordOutput"
+            class="password-input"
+            type="text"
+            placeholder="Password appears here"
+            readonly
+            autocomplete="off"
+            spellcheck="false"
+            aria-live="polite"
+          />
+        </div>
+
+        <button
+          type="button"
+          id="copyBtn"
+          class="copy-btn"
+          aria-label="Copy password to clipboard"
+          title="Copy to clipboard"
+        >
+          <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2" />
+          </svg>
+          <span id="copyBtnText">Copy</span>
+        </button>
+      </div>
+
+      <!-- Password length and character options -->
+      <div class="settings-panel">
+        <div class="length-header">
+          <label for="lengthSlider" class="length-label">Password Length</label>
+          <output id="lengthValue" class="length-value" for="lengthSlider" aria-live="polite">(12)</output>
+        </div>
+
+        <div class="slider-row">
+          <span class="slider-bound" aria-hidden="true">6</span>
+          <input
+            id="lengthSlider"
+            class="length-slider"
+            type="range"
+            min="6"
+            max="50"
+            value="12"
+            aria-label="Password length"
+          />
+          <span class="slider-bound" aria-hidden="true">50</span>
+        </div>
+
+        <div class="options-list" role="group" aria-label="Character options">
+          <label class="checkbox-label" for="includeUppercase">
+            <input type="checkbox" id="includeUppercase" checked />
+            <span class="custom-checkbox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6" /></svg>
+            </span>
+            <span class="option-text">Include Uppercase</span>
+          </label>
+
+          <label class="checkbox-label" for="includeLowercase">
+            <input type="checkbox" id="includeLowercase" checked />
+            <span class="custom-checkbox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6" /></svg>
+            </span>
+            <span class="option-text">Include Lowercase</span>
+          </label>
+
+          <label class="checkbox-label" for="includeNumbers">
+            <input type="checkbox" id="includeNumbers" checked />
+            <span class="custom-checkbox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6" /></svg>
+            </span>
+            <span class="option-text">Include Numbers</span>
+          </label>
+
+          <label class="checkbox-label" for="includeSymbols">
+            <input type="checkbox" id="includeSymbols" checked />
+            <span class="custom-checkbox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6" /></svg>
+            </span>
+            <span class="option-text">Include Symbols</span>
+          </label>
+        </div>
+
+        <!-- JavaScript can update this message with success or error feedback. -->
+        <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+      </div>
+
+      <!-- Main action button -->
+      <div class="generate-btn-housing">
+        <button type="button" id="generateBtn" class="generate-btn">Generate Password</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Keep your JavaScript in this file; the IDs above remain familiar for practice. -->
+  <script src="script.js" defer></script>
+</body>
+</html>
